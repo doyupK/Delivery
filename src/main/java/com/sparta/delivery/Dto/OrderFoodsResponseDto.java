@@ -1,5 +1,6 @@
 package com.sparta.delivery.Dto;
 
+import com.sparta.delivery.domain.Order;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -7,7 +8,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class FoodOrderRequestDto {
-    Long id;
+public class OrderFoodsResponseDto {
+    String name;
     int quantity;
+    int price;
 }

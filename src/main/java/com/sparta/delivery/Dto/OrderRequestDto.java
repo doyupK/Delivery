@@ -11,6 +11,5 @@ import java.util.List;
 @AllArgsConstructor
 public class OrderRequestDto {
     private Long restaurantId;
-    private List<FoodOrderRequestDto> foods;
-
+    private List<OrderFoodsRequestDto> foods;
 }

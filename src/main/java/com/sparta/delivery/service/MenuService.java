@@ -2,15 +2,14 @@ package com.sparta.delivery.service;
 
 import com.sparta.delivery.Dto.FoodDto;
 import com.sparta.delivery.mapping.MenuMapping;
-import com.sparta.delivery.model.Menu;
-import com.sparta.delivery.model.Restaurant;
+import com.sparta.delivery.domain.Food;
+import com.sparta.delivery.domain.Restaurant;
 import com.sparta.delivery.repository.MenuRepository;
 import com.sparta.delivery.repository.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,7 +36,7 @@ public class MenuService {
             if ( food.getPrice() <100 || food.getPrice() >1000000){
                 throw new IllegalArgumentException("음식 가격이 안맞음");
             }
-            Menu menu = new Menu(food.getName(), food.getPrice(), restaurant);
+            Food menu = new Food(food.getName(), food.getPrice(), restaurant);
 
             menuRepository.save(menu);
         }

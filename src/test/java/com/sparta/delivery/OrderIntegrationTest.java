@@ -220,6 +220,7 @@ class OrderIntegrationTest {
         assertEquals(food1.name, foodOrder1.name);
         assertEquals(foodOrder1.quantity, foodOrder1.quantity);
         assertEquals(10900, foodOrder1.price);
+
         // 음식2 주문 확인
         FoodOrderDto foodOrder2 = orderDto.foods.stream()
                 .filter(foodOrderDto -> foodOrderDto.name.equals(food2.getName()))
