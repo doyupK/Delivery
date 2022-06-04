@@ -73,7 +73,7 @@ public class OrderService {
 
 
         return new OrderResponseDto(
-                restaurant.getRestaurantName(),
+                restaurant.getName(),
                 orderFoodsResponseDtoList,
                 restaurant.getDeliveryFee(),
                 restaurant.getDeliveryFee()+sumFoodsPrice);
@@ -104,7 +104,7 @@ public class OrderService {
                 orderFoodsResponseDtoList.add(orderFoodsResponseDto);
             }
             OrderResponseDto orderResponseDto = new OrderResponseDto(
-                    order.getRestaurant().getRestaurantName(),
+                    order.getRestaurant().getName(),
                     orderFoodsResponseDtoList,
                     order.getRestaurant().getDeliveryFee(),
                     order.getTotalPrice()

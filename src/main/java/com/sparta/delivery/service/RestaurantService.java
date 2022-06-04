@@ -19,18 +19,28 @@ public class RestaurantService {
     }
 
     public List<Restaurant> getList() {
-
         return restaurantRepository.findAll();
     }
 
-    public void registryRestaurant(RestaurantDto restaurantDto) {
-        Restaurant restaurant = new Restaurant(
-                restaurantDto.getDeliveryFee(),
-                restaurantDto.getMinOrderPrice(),
-                restaurantDto.getName()
+    public Restaurant registryRestaurant(RestaurantDto restaurantDto) {
 
+        if(restaurantDto.getDeliveryFee() <0||
+                restaurantDto.getDeliveryFee() > 10000||
+                restaurantDto.getDeliveryFee() % 500 != 0||
+                restaurantDto.getMinOrderPrice()<1000||
+                restaurantDto.getMinOrderPrice()>100000||
+                restaurantDto.getMinOrderPrice()%100!=0){
+            throw new RuntimeException("");
+        }
+
+        Restaurant restaurant = new Restaurant(
+                restaurantDto.getName(),
+                restaurantDto.getMinOrderPrice(),
+                restaurantDto.getDeliveryFee()
         );
+
         restaurantRepository.save(restaurant);
+        return restaurantRepository.findRestaurantByName(restaurant.getName());
     }
 
 

@@ -15,10 +15,10 @@ public class Restaurant {
     // ID가 자동으로 생성 및 증가합니다.
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(nullable = false)
     private Long id;
 
-
+    @Column(nullable = false, unique = true)
+    private String name;
 
     @Column(nullable = false)
     private int minOrderPrice;
@@ -26,13 +26,11 @@ public class Restaurant {
     @Column(nullable = false)
     private int deliveryFee;
 
-    @Column(nullable = false, unique = true)
-    private String restaurantName;
-
-
-    public Restaurant(int minOrderPrice, int deliveryFee, String name) {
-        this.restaurantName = name;
+    public Restaurant(String name, int minOrderPrice, int deliveryFee) {
+        this.name = name;
         this.minOrderPrice = minOrderPrice;
         this.deliveryFee = deliveryFee;
     }
+
+
 }

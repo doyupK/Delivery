@@ -33,9 +33,12 @@ public class MenuService {
         Restaurant restaurant = findRestaurant.get();
 
         for(FoodDto food : requestFoodsDtoList){
-            if ( food.getPrice() <100 || food.getPrice() >1000000){
+            if (    food.getPrice() <100        ||
+                    food.getPrice() >1000000    ||
+                    food.getPrice()  % 100 != 0 ){
                 throw new IllegalArgumentException("음식 가격이 안맞음");
             }
+
             Food menu = new Food(food.getName(), food.getPrice(), restaurant);
 
             menuRepository.save(menu);

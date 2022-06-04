@@ -10,15 +10,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-//@Controller
 public class MenuController {
     private final MenuService menuService;
-    private final RestaurantService restaurantService;
 
     @Autowired
-    public MenuController(MenuService menuService, RestaurantService restaurantService) {
+    public MenuController(MenuService menuService) {
         this.menuService = menuService;
-        this.restaurantService = restaurantService;
     }
 
     @GetMapping("/restaurant/{restaurantId}/foods")

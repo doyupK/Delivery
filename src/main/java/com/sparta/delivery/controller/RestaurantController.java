@@ -19,8 +19,8 @@ public class RestaurantController {
 
     //    음식점 등록
     @PostMapping("/restaurant/register")
-    public void registryRestaurant(@RequestBody RestaurantDto restaurantDto){
-        restaurantService.registryRestaurant(restaurantDto);
+    public Restaurant registryRestaurant(@RequestBody RestaurantDto restaurantDto){
+        return restaurantService.registryRestaurant(restaurantDto);
     }
 
     @GetMapping("/restaurants")
