@@ -44,6 +44,10 @@ public class OrderService {
         List<OrderFoodsResponseDto> orderFoodsResponseDtoList = new ArrayList<>();
 
         for(OrderFoodsRequestDto orderFood : orderRequestDto.getFoods()) {
+            if(orderFood.getQuantity() < 1 || orderFood.getQuantity()>100){
+                throw new IllegalArgumentException("허용 값 넘어감");
+            }
+
             OrderDetail orderDetail = null;
             OrderFoodsResponseDto orderFoodsResponseDto = null;
             for (MenuMapping restaurantFood : restaurantFoodsList) {
@@ -65,10 +69,14 @@ public class OrderService {
                     break;
                 }
             }
+            if(restaurant.getMinOrderPrice() > sumFoodsPrice){
+                throw new IllegalArgumentException("최소 주문 가격 안넘음");
+            }
+
             orderFoodsResponseDtoList.add(orderFoodsResponseDto);
             orderDetailRepository.save(orderDetail);
         }
-        order.setTotalPrice(sumFoodsPrice);
+        order.setTotalPrice(sumFoodsPrice+restaurant.getDeliveryFee());
         orderRepository.save(order);
 
 
