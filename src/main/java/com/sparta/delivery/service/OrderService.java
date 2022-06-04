@@ -77,7 +77,6 @@ public class OrderService {
                 orderFoodsResponseDtoList,
                 restaurant.getDeliveryFee(),
                 restaurant.getDeliveryFee()+sumFoodsPrice);
-//        OrderFoodsResponseDto orderFoodsResponseDto = new OrderFoodsResponseDto();
 
     }
 

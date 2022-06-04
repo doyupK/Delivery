@@ -7,6 +7,7 @@ import com.sparta.delivery.domain.Restaurant;
 import com.sparta.delivery.repository.MenuRepository;
 import com.sparta.delivery.repository.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -37,6 +38,9 @@ public class MenuService {
                     food.getPrice() >1000000    ||
                     food.getPrice()  % 100 != 0 ){
                 throw new IllegalArgumentException("음식 가격이 안맞음");
+            }
+            if(menuRepository.findByRestaurantIdAndName(restaurantId, food.getName()) != null){
+                throw new DuplicateKeyException("이미 존재하는 메뉴");
             }
 
             Food menu = new Food(food.getName(), food.getPrice(), restaurant);
