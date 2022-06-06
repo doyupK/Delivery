@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 
 @SpringBootApplication
-@ServletComponentScan("lecturer")
+@ServletComponentScan
 public class DeliveryApplication {
 
 	public static void main(String[] args) {

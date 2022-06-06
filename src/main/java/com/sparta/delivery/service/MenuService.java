@@ -9,8 +9,8 @@ import com.sparta.delivery.repository.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,7 +29,7 @@ public class MenuService {
     public void registryFoods(Long restaurantId, List<FoodDto> requestFoodsDtoList) {
         Optional<Restaurant> findRestaurant = restaurantRepository.findById(restaurantId);
         if(!findRestaurant.isPresent()) {
-            throw new NullPointerException("음식점 없음");
+            throw new IllegalArgumentException("음식점 없음");
         }
         Restaurant restaurant = findRestaurant.get();
 
@@ -40,7 +40,7 @@ public class MenuService {
                 throw new IllegalArgumentException("음식 가격이 안맞음");
             }
             if(menuRepository.findByRestaurantIdAndName(restaurantId, food.getName()) != null){
-                throw new DuplicateKeyException("이미 존재하는 메뉴");
+                throw new IllegalArgumentException("이미 존재하는 메뉴");
             }
 
             Food menu = new Food(food.getName(), food.getPrice(), restaurant);

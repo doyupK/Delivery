@@ -6,6 +6,7 @@ import com.sparta.delivery.domain.Restaurant;
 import com.sparta.delivery.repository.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class RestaurantService {
         return restaurantRepository.findAll();
     }
 
+    @Transactional
     public Restaurant registryRestaurant(RestaurantDto restaurantDto) {
 
         if(restaurantDto.getDeliveryFee() <0||
@@ -30,7 +32,7 @@ public class RestaurantService {
                 restaurantDto.getMinOrderPrice()<1000||
                 restaurantDto.getMinOrderPrice()>100000||
                 restaurantDto.getMinOrderPrice()%100!=0){
-            throw new RuntimeException("");
+            throw new IllegalArgumentException("금액 오류");
         }
 
         Restaurant restaurant = new Restaurant(
@@ -44,11 +46,5 @@ public class RestaurantService {
     }
 
 
-    public Restaurant getRestaurant(OrderRequestDto orderRequestDto) {
-        return restaurantRepository.findById(orderRequestDto.getRestaurantId())
-                .orElseThrow(
-                        () -> new NullPointerException("음식점 ID 정보 없음")
-                );
 
-    }
 }

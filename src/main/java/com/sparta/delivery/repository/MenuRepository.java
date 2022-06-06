@@ -8,9 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface MenuRepository extends JpaRepository<Food, Long> {
-
-
     List<MenuMapping> findMenusByRestaurant(Restaurant restaurant);
-
     Food findByRestaurantIdAndName(Long Id, String name);
 }

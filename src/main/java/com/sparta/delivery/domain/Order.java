@@ -22,9 +22,6 @@ public class Order {
     private Restaurant restaurant;
 
 
-//    @Column(nullable = false)
-//    private String deliveryFee;
-//
     @Column(nullable = false)
     private int totalPrice;
 
@@ -32,11 +29,12 @@ public class Order {
         this.restaurant = restaurant;
         this.totalPrice = totalPrice;
     }
+
+
 //    public Order(Restaurant restaurant, String foods, String deliveryFee, int totalPrice) {
 //        this.restaurant = restaurant;
 //        this.foods = foods;
 //        this.deliveryFee = deliveryFee;
 //        this.totalPrice = totalPrice;
 //    }
-
 }

@@ -24,7 +24,6 @@ public class RestaurantController {
     }
 
     @GetMapping("/restaurants")
-    @ResponseBody
     public List<Restaurant> getRestaurantList(){
         return restaurantService.getList();
     }

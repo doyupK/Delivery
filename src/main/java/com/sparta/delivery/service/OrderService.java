@@ -63,9 +63,7 @@ public class OrderService {
                             orderFood.getQuantity(),
                             orderFood.getQuantity() * restaurantFood.getPrice()
                     );
-
                     sumFoodsPrice += restaurantFood.getPrice() * orderFood.getQuantity();
-
                     break;
                 }
             }
